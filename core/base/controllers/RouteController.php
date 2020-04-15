@@ -34,7 +34,7 @@ class RouteController{
         if (strrpos($adress_str, '/') === strlen($adress_str)-1 && \strrpos($adress_str, '/') !== 0) {
             //$this->redirect(rtrim($adress_str), '/', 301);
         }
-
+ 
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
 
         if ($path === PATH) {
@@ -42,8 +42,28 @@ class RouteController{
             if (!$this->routes) {
                 throw new RouteException('Сайт находится на тех. обслуживании');
             }
-            if (strrpos($adress_str, $this->routes['admin']['alias']) === \strlen(PATH)) {
+            if (strpos($adress_str, $this->routes['admin']['alias']) === \strlen(PATH)) {
                 //admin panel
+                $url = \explode('/', substr($adress_str, strlen(PATH.$this->routes['admin']['alias']) + 1));
+
+                if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'].PATH.$this->routes['plugins']['path'].$url[0])){
+                    //plugin is connected
+                    $plugin = array_shift($url);
+                    $pluginSettings = $this->routes['settings']['path'].ucfirst($plugin).'Settings.php';
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'].PATH.$pluginSettings)) {
+                        $pluginSettings = str_replace('/', '\\', $pluginSettings);
+                        $this->routes = $pluginSettings::get('routes');
+                    }
+                    $dir = $this->routes['plugins']['dir'] ? '/'.$this->routes['plugins']['dir'].'/' : '/';
+                    $dir = str_replace('//', '/', $dir);
+                    $this->controller = $this->routes['plugins']['path'].$plugin.$dir;
+                    $hrUrl = $this->routes['plugins']['hrUrl'];
+                    $route = 'plugins';
+                } else {
+                    $this->controller = $this->routes['admin']['path'];
+                    $hrUrl = $this->routes['admin']['hrUrl'];
+                    $route = 'admin';
+                }
             } else {
                 $url = \explode('/', substr($adress_str, strlen(PATH)));
 
@@ -52,8 +72,27 @@ class RouteController{
 
                 $route = 'user';
             }
-
             $this->createRoute($route, $url);
+
+            if ($url[1]) {
+                $count = count($url);
+                $key = '';
+
+                if (!$hrUrl) {
+                    $i = 1;
+                } else {
+                    $this->parameters['alias'] = $url[1];
+                    $i = 2;
+                }
+
+                for (;$i < $count; $i++) { 
+                    if (!$key) {
+                        $key = $url[$i];
+                        $this->parameters[$key] = '';
+                    }
+                }
+            }
+
             exit();
         } else {
             try {
@@ -78,7 +117,7 @@ class RouteController{
             $this->controller .= $this->routes['default']['controller'];
         }
         $this->inputMethod = $route[1] ? $route[1] : $this->routes['default']['inputMethod'];
-        $this->outputMethod = $route[2] ? $route[2] : $this->routes['default']['outputMethod'];
+        $this->outputMethod = $route[2] ? $route[2 ] : $this->routes['default']['outputMethod'];
 
         return;
     }
