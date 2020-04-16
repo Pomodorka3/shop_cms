@@ -9,7 +9,10 @@ class Settings{
         'admin' => [
             'alias' => 'admin',
             'path' => 'core/admin/controllers/',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'routes' => [
+
+            ]
         ],
         'settings' => [
             'path' => 'core/base/settings/'
@@ -23,7 +26,7 @@ class Settings{
             'path' => 'core/user/controllers/',
             'hrUrl' => true,
             'routes' => [
-                'catalog' => 'site'
+                'catalog' => 'site/hello/bye'
             ]
         ],
         'default' => [
@@ -91,8 +94,8 @@ class Settings{
                             array_push($base, $value);
                             continue;
                         }
-                        $base[$key] = $value;
                     }
+                    $base[$key] = $value;
                 }
             }
         }

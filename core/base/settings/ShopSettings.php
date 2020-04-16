@@ -13,7 +13,11 @@ class ShopSettings{
         'admin' => [
             'alias' => 'sudo',
             'path' => 'core/admin/controllers/',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'dir' => 'controller',
+            'routes' => [
+
+            ]
         ]
     ];
 

@@ -49,10 +49,11 @@ class RouteController{
                 if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'].PATH.$this->routes['plugins']['path'].$url[0])){
                     //plugin is connected
                     $plugin = array_shift($url);
-                    $pluginSettings = $this->routes['settings']['path'].ucfirst($plugin).'Settings.php';
-                    if (file_exists($_SERVER['DOCUMENT_ROOT'].PATH.$pluginSettings)) {
+                    $pluginSettings = $this->routes['settings']['path'].ucfirst($plugin).'Settings';
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'].PATH.$pluginSettings.'.php')) {
                         $pluginSettings = str_replace('/', '\\', $pluginSettings);
                         $this->routes = $pluginSettings::get('routes');
+                        // $this->routes = ShopSettings::get('routes');
                     }
                     $dir = $this->routes['plugins']['dir'] ? '/'.$this->routes['plugins']['dir'].'/' : '/';
                     $dir = str_replace('//', '/', $dir);
@@ -89,6 +90,9 @@ class RouteController{
                     if (!$key) {
                         $key = $url[$i];
                         $this->parameters[$key] = '';
+                    } else {
+                        $this->parameters[$key] = $url[$i];
+                        $key = '';
                     }
                 }
             }
@@ -107,8 +111,8 @@ class RouteController{
         $route = [];
 
         if (!empty($arr[0])) {
-            if ($this->rules[$var]['routes'][$arr[0]]) {
-                $route = explode('/', $this->rules[$var]['routes'][$arr[0]]);
+            if ($this->routes[$var]['routes'][$arr[0]]) {
+                $route = explode('/', $this->routes[$var]['routes'][$arr[0]]);
                 $this->controller .= ucfirst($route[0].'Controller');
             } else {
                 $this->controller .= ucfirst($arr[0].'Controller');
