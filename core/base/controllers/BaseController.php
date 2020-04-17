@@ -34,11 +34,38 @@ abstract class BaseController{
 
     public function request($args){
         $args->parameters = $args['parameters'];
-        
-        $inputData = $args['inputData'];
-        $outputData = $args['outputData'];
+        $inputData = $args['inputMethod'];
+        $outputData = $args['outputMethod'];
 
         $this->$inputData();
         $this->page = $this->$outputData();
+
+        if ($this->$errors) {
+            //Log errors
+            $this->writeLog($this->errors);
+        }
+
+        $this->getPage();
+    }
+
+    protected function render($path = '', $parameters = [])
+    {
+        extract($parameters);
+
+        if (!$path) {
+            // $path = TEMPLATE.basename($this->get_class(), 'Controller.php').'.php';
+            $path = TEMPLATE.explode('controller', strtolower((new \ReflectionClass($this))->getShortName()))[0];
+        }
+
+        ob_start();
+
+        if (!@include_once $path.'.php') throw new RouteException("Отсутствие шаблона - ".$path);
+
+        return ob_get_clean();
+    }
+
+    protected function getPage()
+    {
+        exit($this->page);
     }
 }

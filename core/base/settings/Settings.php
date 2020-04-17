@@ -26,7 +26,7 @@ class Settings{
             'path' => 'core/user/controllers/',
             'hrUrl' => true,
             'routes' => [
-                'catalog' => 'site/hello/bye'
+                'site' => 'index/hello'
             ]
         ],
         'default' => [
