@@ -4,15 +4,11 @@ namespace core\base\controllers;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
 
-class RouteController{
+class RouteController extends BaseController{
 
     static private $_instance;
 
     protected $routes;
-    protected $controller;
-    protected $inputMethod;
-    protected $outputMethod;
-    protected $parameters;
 
     private function __clone(){
 
@@ -42,9 +38,10 @@ class RouteController{
             if (!$this->routes) {
                 throw new RouteException('Сайт находится на тех. обслуживании');
             }
-            if (strpos($adress_str, $this->routes['admin']['alias']) === \strlen(PATH)) {
+            $url = \explode('/', substr($adress_str, strlen(PATH)));
+            if ($url[0] && $url[0] === $this->routes['admin']['alias']) {
                 //admin panel
-                $url = \explode('/', substr($adress_str, strlen(PATH.$this->routes['admin']['alias']) + 1));
+                array_shift($url);
 
                 if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'].PATH.$this->routes['plugins']['path'].$url[0])){
                     //plugin is connected
@@ -66,7 +63,6 @@ class RouteController{
                     $route = 'admin';
                 }
             } else {
-                $url = \explode('/', substr($adress_str, strlen(PATH)));
 
                 $hrUrl = $this->routes['user']['hrUrl'];
                 $this->controller = $this->routes['user']['path'];
@@ -96,8 +92,7 @@ class RouteController{
                     }
                 }
             }
-
-            exit();
+            // exit();
         } else {
             try {
                 throw new \Exception('Не корренктаня директория сайта');
@@ -121,7 +116,7 @@ class RouteController{
             $this->controller .= $this->routes['default']['controller'];
         }
         $this->inputMethod = $route[1] ? $route[1] : $this->routes['default']['inputMethod'];
-        $this->outputMethod = $route[2] ? $route[2 ] : $this->routes['default']['outputMethod'];
+        $this->outputMethod = $route[2] ? $route[2] : $this->routes['default']['outputMethod'];
 
         return;
     }

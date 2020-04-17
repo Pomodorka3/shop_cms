@@ -16,7 +16,13 @@ class ShopSettings{
             'hrUrl' => false,
             'dir' => 'controller',
             'routes' => [
-
+                'products' => 'goods'
+            ]
+        ],
+        'plugins' => [
+            'dir' => false,
+            'routes' => [
+                'products' => 'goods'
             ]
         ]
     ];

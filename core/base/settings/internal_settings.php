@@ -1,5 +1,5 @@
 <?php
-echo 'asd';
+
 defined('VG_ACCESS') or die('access denied');
 
 const TEMPLATE = 'templates/default/';
