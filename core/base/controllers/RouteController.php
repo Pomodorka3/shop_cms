@@ -1,34 +1,21 @@
 <?php
 namespace core\base\controllers;
 
+use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
-use core\base\settings\ShopSettings;
 
 class RouteController extends BaseController{
 
-    static private $_instance;
+    use Singleton;
 
     protected $routes;
 
-    private function __clone(){
-
-    }
-
-    static public function getInstance(){
-        if (self::$_instance instanceof self){
-            return self::$_instance;
-        }
-
-        return self::$_instance = new self;
-    }
-
     private function __construct(){
-        // $s = Settings::get('routes');
-        // $s1 = ShopSettings::get('routes');
-        $adress_str = $_SERVER['REQUEST_URI'];
-        
-        if (strrpos($adress_str, '/') === strlen($adress_str)-1 && \strrpos($adress_str, '/') !== 0) {
-            //$this->redirect(rtrim($adress_str), '/', 301);
+
+        $adress_str = substr($_SERVER['REQUEST_URI'], strlen(PATH)-1);
+
+        if (strrpos($adress_str, '/') === strlen($adress_str)-1 && strrpos($adress_str, '/') !== 0) {
+            $this->redirect(rtrim(rtrim(PATH, '/').$adress_str, '/'), 301);
         }
  
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
@@ -36,9 +23,10 @@ class RouteController extends BaseController{
         if ($path === PATH) {
             $this->routes = Settings::get('routes');
             if (!$this->routes) {
-                throw new RouteException('Сайт находится на тех. обслуживании');
+                throw new RouteException('Отсутсвуют маршруты в базовых настройках', 1);
             }
-            $url = \explode('/', substr($adress_str, strlen(PATH)));
+            // $url = \explode('/', substr($adress_str, strlen(PATH)));
+            $url = explode('/', ltrim($adress_str, '/'));
             if ($url[0] && $url[0] === $this->routes['admin']['alias']) {
                 //admin panel
                 array_shift($url);
@@ -50,7 +38,6 @@ class RouteController extends BaseController{
                     if (file_exists($_SERVER['DOCUMENT_ROOT'].PATH.$pluginSettings.'.php')) {
                         $pluginSettings = str_replace('/', '\\', $pluginSettings);
                         $this->routes = $pluginSettings::get('routes');
-                        // $this->routes = ShopSettings::get('routes');
                     }
                     $dir = $this->routes['plugins']['dir'] ? '/'.$this->routes['plugins']['dir'].'/' : '/';
                     $dir = str_replace('//', '/', $dir);
@@ -94,11 +81,7 @@ class RouteController extends BaseController{
             }
             // exit();
         } else {
-            try {
-                throw new \Exception('Не корренктаня директория сайта');
-            } catch (\Exception $e) {
-                exit($e->getMessage());
-            }
+            throw new RouteException('Не корренктная директория сайта', 1);
         }   
     }
 
