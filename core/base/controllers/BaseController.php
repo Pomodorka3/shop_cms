@@ -72,7 +72,7 @@ abstract class BaseController{
             $routes = Settings::get('routes');
 
             if ($space === $routes['user']['path']) $template = TEMPLATE;
-            else $template = ADMIN_TEMPLATE;
+            elseif ($space ===$routes['admin']['path']) $template = ADMIN_TEMPLATE;
             
             $path = $template.explode('controller', strtolower($class->getShortName()))[0];
         }
