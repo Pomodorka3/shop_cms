@@ -1,0 +1,12 @@
+Fault: 20-04-2020 15:03:52 - Ошибка подключения к БД: 1049 Unknown database 'shop'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 17
+
+Fault: 20-04-2020 15:22:19 - Ошибка в SQL запросе: SELECT * FROM articles1 - 1146 Table 'im.articles1' doesn't exist
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 20-04-2020 15:23:38 - Ошибка в SQL запросе: SELECT name1 FROM articles - 1054 Unknown column 'name1' in 'field list'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
