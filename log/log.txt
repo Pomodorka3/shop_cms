@@ -2,3 +2,7 @@ Fault: 20-04-2020 14:26:41 - Method core\admin\controllers\IndexController::requ
 File C:\XAMPP\htdocs\drive\core\base\controllers\BaseController.php
 In line 37
 
+Fault: 21-04-2020 19:59:58 - Не верное имя файла для подключения - core/plugins/shop/IndexController
+File C:\XAMPP\htdocs\drive\core\base\settings\internal_settings.php
+In line 33
+

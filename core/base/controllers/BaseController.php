@@ -39,7 +39,7 @@ abstract class BaseController{
     }
 
     public function request($args){
-        $args->parameters = $args['parameters'];
+        $this->parameters = $args['parameters'];
         $inputData = $args['inputMethod'];
         $outputData = $args['outputMethod'];
 

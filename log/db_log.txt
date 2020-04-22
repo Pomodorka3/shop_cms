@@ -9,4 +9,3 @@ In line 28
 Fault: 20-04-2020 15:23:38 - Ошибка в SQL запросе: SELECT name1 FROM articles - 1054 Unknown column 'name1' in 'field list'
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
-

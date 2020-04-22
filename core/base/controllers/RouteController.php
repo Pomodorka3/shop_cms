@@ -31,7 +31,7 @@ class RouteController extends BaseController{
                 //admin panel
                 array_shift($url);
 
-                if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'].PATH.$this->routes['plugins']['path'].$url[0])){
+                if(array_key_exists(0, $url) && is_dir($_SERVER['DOCUMENT_ROOT'].PATH.$this->routes['plugins']['path'].$url[0])){
                     //plugin is connected
                     $plugin = array_shift($url);
                     $pluginSettings = $this->routes['settings']['path'].ucfirst($plugin).'Settings';
@@ -58,7 +58,7 @@ class RouteController extends BaseController{
             }
             $this->createRoute($route, $url);
 
-            if ($url[1]) {
+            if (array_key_exists(1, $url)) {
                 $count = count($url);
                 $key = '';
 
@@ -89,7 +89,7 @@ class RouteController extends BaseController{
         $route = [];
 
         if (!empty($arr[0])) {
-            if ($this->routes[$var]['routes'][$arr[0]]) {
+            if (array_key_exists($arr[0], $this->routes[$var]['routes'])) {
                 $route = explode('/', $this->routes[$var]['routes'][$arr[0]]);
                 $this->controller .= ucfirst($route[0].'Controller');
             } else {
@@ -98,8 +98,8 @@ class RouteController extends BaseController{
         } else {
             $this->controller .= $this->routes['default']['controller'];
         }
-        $this->inputMethod = $route[1] ? $route[1] : $this->routes['default']['inputMethod'];
-        $this->outputMethod = $route[2] ? $route[2] : $this->routes['default']['outputMethod'];
+        $this->inputMethod = array_key_exists(1, $route) ? $route[1] : $this->routes['default']['inputMethod'];
+        $this->outputMethod = array_key_exists(2, $route) ? $route[2] : $this->routes['default']['outputMethod'];
 
         return;
     }
