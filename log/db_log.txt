@@ -96,3 +96,19 @@ Fault: 23-04-2020 15:50:33 - Ошибка в SQL запросе: INSERT INTO tab
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
 
+Fault: 23-04-2020 20:18:34 - Ошибка в SQL запросе: INSERT INTO table () VALUES () - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table () VALUES ()' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 20:21:19 - Ошибка в SQL запросе: INSERT INTO table () VALUES () - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table () VALUES ()' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 20:21:40 - Ошибка в SQL запросе: INSERT INTO table (name) VALUES ('Masha') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name) VALUES ('Masha')' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 20:21:51 - Ошибка в SQL запросе: INSERT INTO table (name,namesd) VALUES ('Masha','Masha') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,namesd) VALUES ('Masha','Masha')' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+

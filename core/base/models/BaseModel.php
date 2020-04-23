@@ -92,9 +92,12 @@ class BaseModel extends BaseModelMethods{
         return $this->query($query);
     }
 
-    public function add($table, $set){
+    final public function add($table, $set){
         $set['fields'] = (array_key_exists('fields', $set) && is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : false;
         $set['files'] = (array_key_exists('files', $set) && is_array($set['files']) && !empty($set['files'])) ? $set['files'] : false;
+        if (!isset($set['fields']) && !isset($set['files'])) {
+            return false;
+        }
         $set['return_id'] = array_key_exists('return_id', $set) ? true : false;
         $set['except'] = (array_key_exists('except', $set) && is_array($set['except']) && !empty($set['except'])) ? $set['except'] : [];
         
@@ -107,5 +110,18 @@ class BaseModel extends BaseModelMethods{
             throw new DbException('Ошибка при генерации SQL запроса вставки в ДБ');
         }
         return false;
+    }
+
+    final public function showColumns($table)
+    {
+        $query = "SHOW COLUMNS FROM $table";
+        $result = $this->query($query);
+        $columns = [];
+        if (!empty($result)) {
+            foreach ($result as $item) {
+                # code...
+            }
+        }
+        return $columns;
     }
 }

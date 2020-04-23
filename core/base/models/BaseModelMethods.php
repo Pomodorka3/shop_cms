@@ -189,7 +189,7 @@ abstract class BaseModelMethods{
 
     protected function createInsert($fields, $files, $except)
     {
-        if (!isset($fields)) {
+        if (empty($fields)) {
             $fields = $_POST;
         }
 
