@@ -67,26 +67,32 @@ class BaseModel{
      
     final public function get($table, $set = [])
     {
-        $fields = $this->createFields($table, $set);
-        $order = $this->createOrder($table, $set);
-        $where = $this->createWhere($table, $set);
+        $fields = $this->createFields($set, $table);
+        $order = $this->createOrder($set, $table);
+        $where = $this->createWhere($set, $table);
 
-        $join_arr = $this->createJoin($table, $set);
+        if (empty($where)) {
+            $new_where = true;
+        } else {
+            $new_where = false;
+        }
+
+        $join_arr = $this->createJoin($set, $table, $new_where);
         $fields .= $join_arr['fields'];
         $join = $join_arr['join'];
-        $where = $join_arr['where'];
+        $where .= $join_arr['where'];
         $fields = rtrim($fields, ',');
 
         // $order = $this->createOrder($table, $set);
 
-        $limit = $set['limit'] ? $set['limit'] : '';
+        $limit = $set['limit'] ? 'LIMIT '.$set['limit'] : '';
 
         $query = "SELECT $fields FROM $table $join $where $order $limit";
-
+        exit($query);
         return $this->query($query);
     }
 
-    protected function createFields($table = false, $set)
+    protected function createFields($set, $table = false)
     {
         $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
         $table = $table ? $table.'.' : '';
@@ -99,7 +105,7 @@ class BaseModel{
         return $fields;
     }
 
-    protected function createOrder($table = false, $set)
+    protected function createOrder($set, $table = false)
     {
         $table = $table ? $table.'.' : '';
         $order_by = '';
@@ -129,14 +135,14 @@ class BaseModel{
         return $order_by;
     }
 
-    protected function createWhere($table = false, $set, $instruction = 'WHERE')
+    protected function createWhere($set, $table = false, $instruction = 'WHERE')
     {
         $table = $table ? $table.'.' : '';
         $where = '';
 
         if (is_array($set['where']) && !empty($set['where'])) {
-            $set['operand'] = (is_array($set['operand']) && !empty($set['operand'])) ? $set['operand'] : ['='];
-            $set['condition'] = (is_array($set['condition']) && !empty($set['condition'])) ? $set['condition'] : ['AND'];
+            $set['operand'] = (isset($set['operand']) && is_array($set['operand']) && !empty($set['operand'])) ? $set['operand'] : ['='];
+            $set['condition'] = (isset($set['condition']) && is_array($set['condition']) && !empty($set['condition'])) ? $set['condition'] : ['AND'];
             $where = $instruction;
             $o_count = 0;
             $c_count = 0;
@@ -156,7 +162,7 @@ class BaseModel{
                 }
 
                 if ($operand === 'IN' || $operand === 'NOT IN') {
-                    if (is_string($item) && strpos($item, 'SELECT')) {
+                    if (is_string($item) && strpos($item, 'SELECT') === 0) {
                         $in_str = $item;
                     } else {
                         if (is_array($item)) {
@@ -166,7 +172,7 @@ class BaseModel{
                         }
                         $in_str = '';
                         foreach ($temp_item as $value) {
-                            $in_str .= "'".trim($value)."',";
+                            $in_str .= "'".addslashes(trim($value))."',";
                         }
                     }
                     $where .= $table.$key.' '.$operand.' ('.rtrim($in_str, ',').') '.$condition;
@@ -181,17 +187,90 @@ class BaseModel{
                             }
                         }
                     }
-                    $where .= $table.$key.' LIKE '."'".$item."' $condition";
+                    $where .= $table.$key.' LIKE '."'".addslashes($item)."' $condition";
                 } else {
                     if (strpos($item, 'SELECT') === 0) {
                         $where .= $table.$key.' '.$operand.' ('.$item.") $condition";
                     } else {
-                        $where .= $table.$key.' '.$operand." '".$item."' $condition";
+                        $where .= $table.$key.' '.$operand." '".addslashes($item)."' $condition";
                     }
                 }
             }
             $where = substr($where, 0, strrpos($where, $condition));
         }
         return $where;
+    }
+
+    protected function createjoin($set, $table, $new_where = false)
+    {
+        
+        $fields = '';
+        $join = '';
+        $where = '';
+
+        if (isset($set['join'])) {
+            $join_table = $table;
+            foreach ($set['join'] as $key => $item) {
+                if (is_int($key)) {
+                    if (!isset($item['table'])) {
+                        continue;
+                    } else {
+                        $key = $item['table'];
+                    }
+                }
+
+                if (isset($join)) {
+                    $join .= ' ';
+                }
+
+                if (isset($item['on'])) {
+                    $join_fields = '';
+                    // $item['on']['fields'] = isset($item['on']['fields']) ? $item['on']['fields'] : NULL;
+                    // $item['on'] = isset($item['on']) ? $item['on'] : [0];
+                    switch (2) {
+                        case @count(isset($item['on']['fields']) ? $item['on']['fields'] : 0):
+                            $join_fields = $item['on']['fields'];
+                            break;
+                        
+                        case count($item['on']):
+                            $join_fields = $item['on'];
+                            break;
+                            
+                        default:
+                            continue 2;
+                            break;
+                    }
+
+                    if (!isset($item['join_type'])) {
+                        $join .= 'LEFT JOIN ';
+                    } else  {
+                        $join .= strtoupper($item['join_type']).' JOIN ';
+                    }
+
+                    $join .= $key. ' ON ';
+
+                    if (isset($item['on']['table'])) {
+                        $join .= $item['on']['table'];
+                    } else {
+                        $join .= $join_table;
+                    }
+
+                    $join .= '.'.$join_fields[0].' = '.$key.'.'.$join_fields[1];
+                    $join_table = $key;
+
+                    if ($new_where) {
+                        if (isset($item['where'])) {
+                            $new_where = false;
+                        }
+                        $group_condition = 'WHERE';
+                    } else {
+                        $group_condition = isset($item['group_condition']) ? strtoupper($item['group_condition']) : 'AND';
+                    }
+                    $fields .= $this->createFields($item, $key);
+                    $where .= $this->createWhere($item, $key, $group_condition);
+                }
+            }
+        }
+        return compact('fields', 'join', 'where');
     }
 }
