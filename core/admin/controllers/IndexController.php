@@ -13,7 +13,16 @@ class IndexController extends BaseController{
 
         $table = 'table';
         $color = ['red', 'blue', 'white'];
-        $result = $db->get($table, [
+
+        $files['gallery_img'] = ['asd.jpg', 'mom.png', 'dad.jpeg'];
+        $files['img'] = ['main.jpg'];
+
+        $result = $db->add($table, [
+            'fields' => ['name' => 'Olga', 'content' => 'hello'],
+            // 'except' => ['name'],
+            'files' => $files
+        ]);
+        /* $result = $db->get($table, [
             'fields' => ['id', 'name', 'color', 'car'],
             'where' => ['id' => '1', 'name' => 'Masha'],
             // 'operand' => ['IN', '%LIKE'],
@@ -45,7 +54,7 @@ class IndexController extends BaseController{
                     'on' => ['id1', 'parent_id2']
                 ]
             ]
-        ]);
+        ]); */
 
         exit('admin panel');
     }

@@ -8,4 +8,91 @@ In line 28
 
 Fault: 20-04-2020 15:23:38 - Ошибка в SQL запросе: SELECT name1 FROM articles - 1054 Unknown column 'name1' in 'field list'
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28Fault: 23-04-2020 15:25:17 - Ошибка в SQL запросе: INSERT INTO Array () VALUES () - 1146 Table 'im.array' doesn't exist
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
+
+Fault: 23-04-2020 15:28:37 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img,) VALUES ('''') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img,) VALUES ('''')' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:31:28 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img,) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]''[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img,) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]''[\"mai' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:33:04 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"mai' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:35:29 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"mai' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:36:13 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"mai' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:41:44 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:42:12 - Ошибка в SQL запросе: INSERT INTO table (content,gallery_img,img) VALUES ('hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (content,gallery_img,img) VALUES ('hello','[\"asd.jpg\",\"mom.png\",\"dad.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:44:52 - Ошибка в SQL запросе: INSERT INTO table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (gallery_img,img) VALUES ('[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"mai' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:45:26 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:45:39 - Ошибка в SQL запросе: INSERT INTO table (content,gallery_img,img) VALUES ('hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (content,gallery_img,img) VALUES ('hello','[\"asd.jpg\",\"mom.png\",\"dad.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:45:46 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:48:16 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:48:30 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:48:59 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:49:11 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:49:19 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:49:22 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:49:43 - Ошибка в SQL запросе: INSERT INTO table (name,content) VALUES ('Olga','hello') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content) VALUES ('Olga','hello')' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:50:17 - Ошибка в SQL запросе: INSERT INTO table (name,content) VALUES ('Olga','hello') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content) VALUES ('Olga','hello')' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:50:30 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 23-04-2020 15:50:33 - Ошибка в SQL запросе: INSERT INTO table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.png\",\"dad.jpeg\"]','[\"main.jpg\"]') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table (name,content,gallery_img,img) VALUES ('Olga','hello','[\"asd.jpg\",\"mom.' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
