@@ -23,11 +23,20 @@ class IndexController extends BaseController{
         //     // 'except' => ['name'],
         //     'files' => $files
         // ]);
-        $result = $db->edit($table, [
-            'fields' => ['name' => 'asd'],
-            'files' => $files,
-            'where' => ['id' => 1]
-        ]);
+        // $result = $db->edit($table, [
+        //     'fields' => ['name' => 'asd'],
+        //     'files' => $files,
+        //     'where' => ['id' => 1]
+        // ]);
+        $result = $db->delete($table, [
+                // 'fields' => ['id', 'name','content'],   
+                'where' => ['id' => 2],
+                'join' => [
+                    'students' => [
+                        'on' => ['student_id', 'id']
+                    ]
+                ]
+            ]);
         /* $result = $db->get($table, [
             'fields' => ['id', 'name', 'color', 'car'],
             'where' => ['id' => '1', 'name' => 'Masha'],

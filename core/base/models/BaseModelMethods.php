@@ -9,7 +9,7 @@ abstract class BaseModelMethods{
 
     protected function createFields($set, $table = false)
     {
-        $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
+        $set['fields'] = (array_key_exists('fields', $set) && is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
         $table = $table ? $table.'.' : '';
         $fields = '';
 
@@ -55,7 +55,7 @@ abstract class BaseModelMethods{
         $table = $table ? $table.'.' : '';
         $where = '';
 
-        if (is_array($set['where']) && !empty($set['where'])) {
+        if (array_key_exists('where', $set) && is_array($set['where']) && !empty($set['where'])) {
             $set['operand'] = (isset($set['operand']) && is_array($set['operand']) && !empty($set['operand'])) ? $set['operand'] : ['='];
             $set['condition'] = (isset($set['condition']) && is_array($set['condition']) && !empty($set['condition'])) ? $set['condition'] : ['AND'];
             $where = $instruction;
@@ -122,6 +122,7 @@ abstract class BaseModelMethods{
         $fields = '';
         $join = '';
         $where = '';
+        $tables = '';
 
         if (isset($set['join'])) {
             $join_table = $table;
@@ -172,6 +173,7 @@ abstract class BaseModelMethods{
 
                     $join .= '.'.$join_fields[0].' = '.$key.'.'.$join_fields[1];
                     $join_table = $key;
+                    $tables .= ', '.trim($join_table);
 
                     if ($new_where) {
                         if (isset($item['where'])) {
@@ -186,11 +188,12 @@ abstract class BaseModelMethods{
                 }
             }
         }
-        return compact('fields', 'join', 'where');
+        return compact('fields', 'join', 'where', 'tables');
     }
 
     protected function createInsert($fields, $files, $except)
     {
+        if(empty($except)) $except = [];
         if (empty($fields)) {
             $fields = $_POST;
         }
@@ -230,6 +233,7 @@ abstract class BaseModelMethods{
 
     protected function createUpdate($fields, $files, $except)
     {
+        if(empty($except)) $except = [];
         $update = '';
         if (isset($fields)) {
             foreach ($fields as $row => $value) {
@@ -239,6 +243,8 @@ abstract class BaseModelMethods{
                 $update .= $row.'=';
                 if (in_array($value, $this->sql_func)) {
                     $update .= $value;
+                } elseif ($value === NULL){
+                    $update .= 'NULL,';
                 } else {
                     $update .= "'".addslashes($value)."',";
                 }

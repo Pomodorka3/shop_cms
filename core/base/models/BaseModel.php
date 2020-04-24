@@ -141,6 +141,35 @@ class BaseModel extends BaseModelMethods{
         return $this->query($query, 'u');
     }
 
+    final public function delete($table, $set){
+        $table = trim($table);
+        $where = '';
+        $where = $this->createWhere($set, $table);
+        $columns = $this->showColumns($table);
+        if(!isset($columns)) return false;
+        if(array_key_exists('fields', $set) && is_array($set['fields']) && !empty($set['fields'])) {
+            $fields = [];
+            if (!empty($columns['id_row'])) {
+                foreach ($set['fields'] as $key => $field) {
+                    if ($field === $columns['id_row']) {
+                        unset($set['fields'][$key]);
+                    } else {
+                        $fields[$field] = $columns[$field]['Default'];
+                    }
+                }
+                $update = $this->createUpdate($fields, false, false);
+                $query = "UPDATE $table SET $update $where";
+            }
+        } else {
+            $join_arr = $this->createJoin($set, $table);
+            $join = $join_arr['join'];
+            $join_tables = $join_arr['tables'];
+            $query = 'DELETE '.$table.$join_tables.' FROM '.$table.' '.$join.' '.$where;
+        }
+        exit($query);
+        return $this->query($query, 'd');
+    }
+
     final public function showColumns($table)
     {
         $query = "SHOW COLUMNS FROM $table";
