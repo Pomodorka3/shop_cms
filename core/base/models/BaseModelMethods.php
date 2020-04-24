@@ -5,6 +5,8 @@ namespace core\base\models;
 use core\base\exceptions\DbException;
 
 abstract class BaseModelMethods{
+    protected $sql_func = ['NOW()'];
+
     protected function createFields($set, $table = false)
     {
         $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
@@ -198,14 +200,12 @@ abstract class BaseModelMethods{
             'values' => ''
         ];
         if (!empty($fields)) {
-            $sql_func = ['NOW()'];
-
             foreach ($fields as $row => $value) {
                 if (isset($except) && in_array($row, $except)) {
                     continue;
                 }
                 $insert_arr['fields'] .= $row.',';
-                if (in_array($value, $sql_func)) {
+                if (in_array($value, $this->sql_func)) {
                     $insert_arr['values'] .= $value.',';
                 } else {
                     $insert_arr['values'] .= "'".addslashes($value)."',";
@@ -226,5 +226,35 @@ abstract class BaseModelMethods{
         $insert_arr['fields'] = rtrim($insert_arr['fields'], ',');
         $insert_arr['values'] = rtrim($insert_arr['values'], ',');
         return $insert_arr;
+    }
+
+    protected function createUpdate($fields, $files, $except)
+    {
+        $update = '';
+        if (isset($fields)) {
+            foreach ($fields as $row => $value) {
+                if (isset($except) && in_array($row, $except)) {
+                    continue;
+                }
+                $update .= $row.'=';
+                if (in_array($value, $this->sql_func)) {
+                    $update .= $value;
+                } else {
+                    $update .= "'".addslashes($value)."',";
+                }
+            }
+        }
+
+        if (!empty($files)) {
+            foreach ($files as $row => $file) {
+                $update .= $row.'=';
+                if (is_array($file)) {
+                    $update .= "'".addslashes(json_encode($file))."',";
+                } else {
+                    $update .= "'".addslashes($file)."',";
+                }
+            }
+        }
+        return rtrim($update, ',');    
     }
 }

@@ -112,3 +112,11 @@ Fault: 23-04-2020 20:21:51 - Ошибка в SQL запросе: INSERT INTO tab
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
 
+Fault: 24-04-2020 13:36:04 - Ошибка в SQL запросе: SHOW COLUMNS FROM table - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 24-04-2020 13:36:11 - Ошибка в SQL запросе: SHOW COLUMNS FROM table - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+

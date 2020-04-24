@@ -11,16 +11,22 @@ class IndexController extends BaseController{
     {
         $db = Model::instance();
 
-        $table = 'table';
+        $table = 'articles';
         $color = ['red', 'blue', 'white'];
 
-        $files['gallery_img'] = ['asd.jpg', 'mom.png', 'dad.jpeg'];
+        // $files['gallery_img'] = ['asd.jpg', 'mom.png', 'dad.jpeg'];
+        $files['gallery_img'] = ['asd.jpg', 'ooooo.jpg'];
         $files['img'] = ['main.jpg'];
 
-        $result = $db->add($table, [
-            'fields' => ['name' => 'Olga', 'content' => 'hello'],
-            // 'except' => ['name'],
-            'files' => $files
+        // $result = $db->add($table, [
+        //     'fields' => ['name' => 'Olga', 'content' => 'hello'],
+        //     // 'except' => ['name'],
+        //     'files' => $files
+        // ]);
+        $result = $db->edit($table, [
+            'fields' => ['name' => 'asd'],
+            'files' => $files,
+            'where' => ['id' => 1]
         ]);
         /* $result = $db->get($table, [
             'fields' => ['id', 'name', 'color', 'car'],
