@@ -38,6 +38,9 @@ class Settings{
         ]
     ];
 
+    private $defaultTable = 'articles';
+    private $projectTables = 'articles';
+
     private $templateArr = [
         'text' => ['name', 'adress', 'phone'],
         'textarea' => ['content', 'keywords']

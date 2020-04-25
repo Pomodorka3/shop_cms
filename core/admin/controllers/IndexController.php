@@ -4,19 +4,23 @@ namespace core\admin\controllers;
 
 use core\base\controllers\BaseController;
 use core\admin\models\Model;
+use core\base\settings\Settings;
 
 class IndexController extends BaseController{
 
     protected function inputData()
     {
-        $db = Model::instance();
+       $redirect = PATH.Settings::get('routes')['admin']['alias'].'/show';
+       $this->redirect($redirect);
+    }
+     // $db = Model::instance();
 
-        $table = 'articles';
-        $color = ['red', 'blue', 'white'];
+        // $table = 'articles';
+        // $color = ['red', 'blue', 'white'];
 
         // $files['gallery_img'] = ['asd.jpg', 'mom.png', 'dad.jpeg'];
-        $files['gallery_img'] = ['asd.jpg', 'ooooo.jpg'];
-        $files['img'] = ['main.jpg'];
+        // $files['gallery_img'] = ['asd.jpg', 'ooooo.jpg'];
+        // $files['img'] = ['main.jpg'];
 
         // $result = $db->add($table, [
         //     'fields' => ['name' => 'Olga', 'content' => 'hello'],
@@ -28,7 +32,7 @@ class IndexController extends BaseController{
         //     'files' => $files,
         //     'where' => ['id' => 1]
         // ]);
-        $result = $db->delete($table, [
+        /* $result = $db->delete($table, [
                 // 'fields' => ['id', 'name','content'],   
                 'where' => ['id' => 2],
                 'join' => [
@@ -36,7 +40,7 @@ class IndexController extends BaseController{
                         'on' => ['student_id', 'id']
                     ]
                 ]
-            ]);
+            ]); */
         /* $result = $db->get($table, [
             'fields' => ['id', 'name', 'color', 'car'],
             'where' => ['id' => '1', 'name' => 'Masha'],
@@ -70,8 +74,4 @@ class IndexController extends BaseController{
                 ]
             ]
         ]); */
-
-        exit('admin panel');
-    }
-
 }

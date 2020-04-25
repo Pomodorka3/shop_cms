@@ -120,3 +120,23 @@ Fault: 24-04-2020 13:36:11 - Ошибка в SQL запросе: SHOW COLUMNS FR
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
 
+Fault: 25-04-2020 14:54:58 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 25-04-2020 18:30:51 - Ошибка в SQL запросе: SELECT articles.idas id FROM articles     - 1054 Unknown column 'articles.idas' in 'field list'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 25-04-2020 18:32:39 - Ошибка в SQL запросе: SELECT articles.idas id FROM articles     - 1054 Unknown column 'articles.idas' in 'field list'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 25-04-2020 18:33:31 - Ошибка в SQL запросе: SELECT articles.idas id FROM articles     - 1054 Unknown column 'articles.idas' in 'field list'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+
+Fault: 25-04-2020 18:33:53 - Ошибка в SQL запросе: SELECT articles.idas id FROM articles     - 1054 Unknown column 'articles.idas' in 'field list'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 28
+

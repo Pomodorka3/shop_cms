@@ -85,7 +85,7 @@ class BaseModel extends BaseModelMethods{
 
         // $order = $this->createOrder($table, $set);
 
-        $limit = $set['limit'] ? 'LIMIT '.$set['limit'] : '';
+        $limit = array_key_exists('limit', $set) ? 'LIMIT '.$set['limit'] : '';
 
         $query = "SELECT $fields FROM $table $join $where $order $limit";
         // exit($query);
