@@ -54,7 +54,7 @@ abstract class BaseController{
             $this->page = $data;
         }
 
-        if ($this->$errors) {
+        if (!empty($this->errors)){
             //Log errors
             $this->writeLog($this->errors);
         }

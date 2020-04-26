@@ -8,8 +8,8 @@ class ShowController extends BaseAdmin{
     {
         $this->execBase();
         $this->createTableData();
-        $this->createData();
-        exit();
+        $this->createData(['fields' => ['content']]);
+        return $this->expansion(get_defined_vars());
     }
 
     protected function outputData(Type $var = null)

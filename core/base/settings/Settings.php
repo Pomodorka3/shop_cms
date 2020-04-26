@@ -40,6 +40,7 @@ class Settings{
 
     private $defaultTable = 'articles';
     private $projectTables = 'articles';
+    private $expansion = 'core/admin/expansions/';
 
     private $templateArr = [
         'text' => ['name', 'adress', 'phone'],
