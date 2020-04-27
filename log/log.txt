@@ -46,3 +46,11 @@ Fault: 25-04-2020 14:41:14 - Не верное имя файла для подк
 File C:\XAMPP\htdocs\drive\core\base\settings\internal_settings.php
 In line 33
 
+Fault: 27-04-2020 15:28:05 - Не верное имя файла для подключения - core/admin/controllers/CreatesitemapController
+File C:\XAMPP\htdocs\drive\core\base\settings\internal_settings.php
+In line 34
+
+Fault: 27-04-2020 16:07:02 - Не верное имя файла для подключения - core/admin/controllers/AdminController
+File C:\XAMPP\htdocs\drive\core\base\settings\internal_settings.php
+In line 34
+

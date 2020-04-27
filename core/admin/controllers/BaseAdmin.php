@@ -33,7 +33,7 @@ abstract class BaseAdmin extends BaseController{
         }
 
         if (!$this->adminPath) {
-            $this->adminPath = Settings::get('routes')['admin']['alias'].'/';
+            $this->adminPath = PATH.Settings::get('routes')['admin']['alias'].'/';
         }
 
         $this->sendNoCacheHeaders();

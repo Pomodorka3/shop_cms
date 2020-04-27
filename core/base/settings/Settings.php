@@ -7,6 +7,12 @@ class Settings{
 
     use Singleton;
 
+    private $defaultTable = 'articles';
+    private $projectTables = [
+        'articles' => ['name' => 'Артикулы', 'img'=>'pages.png']
+    ];
+    private $expansion = 'core/admin/expansions/';
+
     private $routes = [
         'admin' => [
             'alias' => 'admin',
@@ -37,10 +43,6 @@ class Settings{
             'outputMethod' => 'outputData'
         ]
     ];
-
-    private $defaultTable = 'articles';
-    private $projectTables = 'articles';
-    private $expansion = 'core/admin/expansions/';
 
     private $templateArr = [
         'text' => ['name', 'adress', 'phone'],

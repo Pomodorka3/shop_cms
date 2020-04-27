@@ -140,3 +140,7 @@ Fault: 25-04-2020 18:33:53 - Ошибка в SQL запросе: SELECT articles
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 28
 
+Fault: 27-04-2020 16:15:54 - Ошибка в SQL запросе: SHOW COLUMNS FROM teachers - 1146 Table 'im.teachers' doesn't exist
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
