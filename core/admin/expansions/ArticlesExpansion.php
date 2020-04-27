@@ -10,6 +10,6 @@ class ArticlesExpansion
 
     public function expansion($args = [])
     {
-        $this->title = 'asdasdad';
+        // $this->title = 'asdasdad';
     }
 }

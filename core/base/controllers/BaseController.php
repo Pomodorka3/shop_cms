@@ -9,7 +9,11 @@ abstract class BaseController{
 
     use \core\base\controllers\BaseMethods;
 
+    protected $header;
+    protected $content;
+    protected $footer;
     protected $page;
+
     protected $errors;
 
     protected $controller;
@@ -17,6 +21,7 @@ abstract class BaseController{
     protected $outputMethod;
     protected $parameters;
 
+    protected $template;
     protected $styles;
     protected $scripts;
 
@@ -64,7 +69,7 @@ abstract class BaseController{
 
     protected function render($path = '', $parameters = [])
     {
-        extract($parameters);
+        @extract($parameters);
 
         if (!$path) {
             $class = new \ReflectionClass($this);
@@ -110,12 +115,12 @@ abstract class BaseController{
                 }
             }
         } else {
-            if (ADMIN_CSS_JS['styles']) {
+            if (isset(ADMIN_CSS_JS['styles'])) {
                 foreach (ADMIN_CSS_JS['styles'] as $item) {
                     $this->styles[] = PATH.ADMIN_TEMPLATE.trim($item, '/');
                 }
             }
-            if (ADMIN_CSS_JS['scripts']) {
+            if (isset(ADMIN_CSS_JS['scripts'])) {
                 foreach (ADMIN_CSS_JS['scripts'] as $item) {
                     $this->scripts[] = PATH.ADMIN_TEMPLATE.trim($item, '/');
                 }
