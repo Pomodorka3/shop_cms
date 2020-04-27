@@ -66,86 +66,7 @@ abstract class BaseAdmin extends BaseController{
         }
     }
 
-    protected function createData($arr = [], $add = true)
-    {
-        $fields = [];
-        $order = [];
-        $order_direction = [];
-
-        if ($add) {
-            if (empty($this->columns['id_row'])) {
-                return $this->data = [];
-            }
-            $fields[] = $this->columns['id_row'].' as id';
-            if (!empty($this->columns['name'])) {
-                $fileds['name'] = 'name';
-            }
-            if (!empty($this->columns['img'])) {
-                $fileds['img'] = 'name';
-            }
-            if (count($fileds) < 3) {
-                foreach ($this->columns as $key => $value) {
-                    if (empty($fileds['name']) && strpos($key, 'name') !== false) {
-                        $fileds['name'] = $key.' as name';
-                    }
-                    if (empty($fileds['img']) && strpos($key, 'img') === 0) {
-                        $fileds['img'] = $key.' as img';
-                    }
-                }
-            }
-            if (!empty($arr['fields'])) {
-                if (is_array($arr['fields'])) {
-                    $fields = Settings::instance()->arrayMergeRecursive($fields, $arr['fields']);
-                } else {
-                    $fields[] = $arr['fields'];
-                }
-            }
-            if (!empty($this->columns['parent_id'])) {
-                if (!in_array('parent_id', $fields)) {
-                    $fields[] = 'parent_id';
-                    $order[] = 'parent_id';
-                }
-            }
-            if (!empty($this->columns['menu'])) {
-                $order[] = 'menu_position';
-            } elseif (!empty($this->columns['date'])) {
-                $order[] = 'date';
-                if (isset($order)) {
-                    $order_direction = ['ASC', 'DESC'];
-                } else {
-                    $order_direction = ['DESC'];
-                }
-            }
-            if (!empty($arr['order'])) {
-                if (is_array($arr['order'])) {
-                    $order = Settings::instance()->arrayMergeRecursive($order, $arr['order']);
-                } else {
-                    $order[] = $arr['order'];
-                }
-            }
-            if (!empty($arr['order_direction'])) {
-                if (is_array($arr['order_direction'])) {
-                    $order_direction = Settings::instance()->arrayMergeRecursive($order_direction, $arr['order_direction']);
-                } else {
-                    $order_direction[] = $arr['order_direction'];
-                }
-            }
-        } else {
-            if (empty($arr)) {
-                $this->data = [];
-            }
-            $fields = $arr['fields'];
-            $order = $arr['order'];
-            $order_direction = $arr['order_direction'];
-        }
-        $this->data = $this->model->get($this->table, [
-            'fields' => $fields,
-            'order' => $order,
-            'order_direction' => $order_direction
-        ]);
-    }
-
-    protected function expansion($args = [])
+    protected function expansion($args = [], $settings = false)
     {
         $filename = explode('_', $this->table);
         $className = '';
@@ -153,13 +74,31 @@ abstract class BaseAdmin extends BaseController{
         foreach ($filename as $item) {
             $className .= ucfirst($item);
         }
-
-        $class = Settings::get('expansion').$className.'Expansion';
+        if (!$settings) {
+            $path = Settings::get('expansion');
+        } elseif (is_object($settings)) {
+            $path = $settings::get('expansion');
+        } else {
+            $path = $settings;
+        }
+        $class = $path.$className.'Expansion';
 
         if (is_readable($_SERVER['DOCUMENT_ROOT'].PATH.$class.'.php')) {
             $class = \str_replace('/', '\\', $class);
             $exp = $class::instance();
-            $result = $exp->expansion($args);
+            //Динамическое добавление свойств классу
+            foreach ($this as $name => $value) {
+                //Присваеваем полю ССЫЛКУ на поле ДАННОГО класса
+                $exp->$name = &$this->$name;
+            }
+            return $exp->expansion($args);
+        } else {
+            $file = $_SERVER['DOCUMENT_ROOT'].PATH.$path.$this->table.'.php';
+            extract($args);
+            if (is_readable($file)) {
+                return include_once $file;
+            }
         }
+        return false;
     }
 }
