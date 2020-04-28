@@ -49,6 +49,16 @@ class Settings{
         'textarea' => ['content', 'keywords']
     ];
 
+    private $blockNeedle = [
+        'vg-rows' => [],
+        'vg-img' => ['id'],
+        'vg-content' => ['content']
+    ];
+
+    private $translate = [
+        'name' => ['Название', 'Не более 100 символов']
+    ];
+
     static public function get($property){
         return self::instance()->$property;
     }

@@ -54,3 +54,11 @@ Fault: 27-04-2020 16:07:02 - Не верное имя файла для подк
 File C:\XAMPP\htdocs\drive\core\base\settings\internal_settings.php
 In line 34
 
+Fault: 28-04-2020 15:36:40 - Отсутствие шаблона - core/admin/views/add
+File C:\XAMPP\htdocs\drive\core\base\controllers\BaseController.php
+In line 89
+
+Fault: 28-04-2020 15:39:06 - Отсутствие шаблона - core/admin/views/add
+File C:\XAMPP\htdocs\drive\core\base\controllers\BaseController.php
+In line 89
+
