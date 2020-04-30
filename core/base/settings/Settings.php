@@ -49,6 +49,11 @@ class Settings{
         'textarea' => ['content', 'keywords']
     ];
 
+    private $rootItems = [
+        'name' => 'Корневая',
+        'tables' => ['articles']
+    ];
+
     private $blockNeedle = [
         'vg-rows' => [],
         'vg-img' => ['id'],

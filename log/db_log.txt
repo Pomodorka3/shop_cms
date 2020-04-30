@@ -144,3 +144,7 @@ Fault: 27-04-2020 16:15:54 - Ошибка в SQL запросе: SHOW COLUMNS FR
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 26
 
+Fault: 30-04-2020 14:01:16 - Ошибка в SQL запросе: SELECT * FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = im AND TABLE_NAME = articles AND CONSTRAINT_NAME <> 'PRIMARY' AND REFERENCED_TABLE_NAME IS NOT NULL - 1054 Unknown column 'im' in 'where clause'
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
