@@ -49,6 +49,14 @@ class Settings{
         'textarea' => ['content', 'keywords']
     ];
 
+    private $radio = [
+        'visible' => [
+            'Нет',
+            'Да',
+            'default' => 'Да'
+        ]
+    ];
+
     private $rootItems = [
         'name' => 'Корневая',
         'tables' => ['articles']

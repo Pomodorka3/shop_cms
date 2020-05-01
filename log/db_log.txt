@@ -148,3 +148,43 @@ Fault: 30-04-2020 14:01:16 - Ошибка в SQL запросе: SELECT * FROM i
 File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
 In line 26
 
+Fault: 01-05-2020 15:32:55 - Ошибка в SQL запросе: SELECT id as id,name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 15:33:36 - Ошибка в SQL запросе: SELECT  id as id, name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 15:33:53 - Ошибка в SQL запросе: SELECT  id as id, name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:16:05 - Ошибка в SQL запросе: SELECT pages.id as id,pages.name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:18:21 - Ошибка в SQL запросе: SELECT pages.id as id,pages.name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:20:08 - Ошибка в SQL запросе: SELECT pages.id as id,pages.name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:21:56 - Ошибка в SQL запросе: SELECT articles.COUNT(*) as count FROM articles     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*) as count FROM articles' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:23:02 - Ошибка в SQL запросе: SELECT pages.id as id,pages.name FROM pages  WHERE    - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:23:26 - Ошибка в SQL запросе: SELECT articles.COUNT(*) as count FROM articles     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*) as count FROM articles' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+
+Fault: 01-05-2020 16:24:54 - Ошибка в SQL запросе: SELECT articles.COUNT(*) as count FROM articles     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*) as count FROM articles' at line 1
+File C:\XAMPP\htdocs\drive\core\base\models\BaseModel.php
+In line 26
+

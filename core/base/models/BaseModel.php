@@ -55,6 +55,7 @@ abstract class BaseModel extends BaseModelMethods{
         @param $table - db_table
         @param array $set
         'fields' => ['id', 'name'],
+        'no_concat
         'where' => ['id' => 1, 'name' => 'Masha'],
         'operand' => ['<>', '='],
         'condition' => ['AND'],
@@ -65,6 +66,9 @@ abstract class BaseModel extends BaseModelMethods{
      
     final public function get($table, $set = [])
     {
+        if (!array_key_exists('no_concat', $set)) {
+            $set['no_concat'] = false;
+        }
         $fields = $this->createFields($set, $table);
         $order = $this->createOrder($set, $table);
         $where = $this->createWhere($set, $table);
